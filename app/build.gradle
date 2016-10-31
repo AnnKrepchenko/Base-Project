@@ -1,0 +1,109 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.novoda.sqlite-analyzer'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.krepchenko.base_proj"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "DEV_EMAIL", "\"support@support.com\""
+        buildConfigField "String", "MARKET_LINK", "\"https://play.google.com/store/apps/details?id=com.krepchenko\""
+
+        vectorDrawables.useSupportLibrary = true
+
+        dataBinding {
+            enabled = true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    signingConfigs {
+        debug {
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file('keys/haulme.jks')
+            storePassword '88qxeGzy'
+            keyAlias 'haulme'
+            keyPassword '88qxeGzy'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            useProguard false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "LOG_ENABLED", "true"
+        }
+
+        release {
+            minifyEnabled false
+            debuggable false
+            useProguard false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "LOG_ENABLED", "false"
+        }
+    }
+
+    productFlavors {
+        dev {
+            versionName = android.defaultConfig.versionName + "d"
+            buildConfigField "String", "SERVER_API_URL", "\"http://54.193.51.135:3000\""
+            buildConfigField "String", "GOOGLE_API_URL", "\"http://maps.google.com/maps/api\""
+            buildConfigField "String", "MEDIA_STORAGE_URL", "\"TODO\""
+            buildConfigField "String", "GCM_SENDER_ID", "\"TODO\""
+
+        }
+
+        production {
+            buildConfigField "String", "SERVER_API_URL", "\"http://54.193.51.135:3000\""
+            buildConfigField "String", "GOOGLE_API_URL", "\"http://maps.google.com/maps/api\""
+            buildConfigField "String", "MEDIA_STORAGE_URL", "\"TODO\""
+            buildConfigField "String", "GCM_SENDER_ID", "\"TODO\""
+
+        }
+    }
+
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:recyclerview-v7:+'
+
+    compile 'com.novoda:sqlite-provider:2.0.0'
+    compile 'com.facebook.stetho:stetho:1.4.1'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta2'
+}
+
+
+sqliteAccess {
+    migrationsDir 'src/main/assets/migrations'
+    packageName 'com.novoda.sqliteprovider.demo.simple'
+}
