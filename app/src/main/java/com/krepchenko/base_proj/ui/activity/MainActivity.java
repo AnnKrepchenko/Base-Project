@@ -13,11 +13,14 @@ import com.krepchenko.base_proj.databinding.ActivityMainBinding;
 import com.krepchenko.base_proj.db.AppContentProvider;
 import com.krepchenko.base_proj.ui.base.BaseActivity;
 
+import hugo.weaving.DebugLog;
+
 public class MainActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final int LOADER_ID = 0;
     ActivityMainBinding activityMainBinding;
 
+    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

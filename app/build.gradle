@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.novoda.sqlite-analyzer'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 25
@@ -35,9 +36,9 @@ android {
             keyPassword "android"
         }
         release {
-            storeFile file('keys/haulme.jks')
+            storeFile file('keys/proj.jks')
             storePassword '88qxeGzy'
-            keyAlias 'haulme'
+            keyAlias 'proj'
             keyPassword '88qxeGzy'
         }
     }
@@ -91,6 +92,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
     compile 'com.novoda:sqlite-provider:2.0.0'
     compile 'com.facebook.stetho:stetho:1.4.1'
@@ -99,7 +101,8 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okio:okio:1.6.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta2'
+
+    compile 'com.scottyab:aescrypt:0.0.1'
 }
 
 
