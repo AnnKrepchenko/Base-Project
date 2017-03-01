@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity implements LoaderManager.LoaderCa
         if (provider instanceof AppContentProvider) {
             SQLiteDatabase db = ((AppContentProvider) provider).getWritableDatabase();
         }
+
     }
 
     @Override
