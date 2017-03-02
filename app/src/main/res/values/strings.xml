@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">base_proj</string>
     <string name="pick_image_intent_text">Choose image from</string>
-
 </resources>
